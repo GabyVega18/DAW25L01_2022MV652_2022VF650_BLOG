@@ -20,14 +20,14 @@ namespace L01_2022VF650_2022MV652.Controllers
         [Route("GetAll")]
         public IActionResult Get()
         {
-            List<calificaciones> Listadocalificaciones = _blogDBContexto.calificaciones.ToList();
-
-            if (Listadocalificaciones.Count == 0)
+            List<calificaciones> Listadocalificacion = (from e in _blogDBContexto.calificaciones
+                                                        select e).ToList();
+            if (Listadocalificacion.Count == 0)
             {
                 return NotFound();
             }
 
-            return Ok(Listadocalificaciones);
+            return Ok(Listadocalificacion);
         }
         [HttpGet]
         [Route("GetById/{id}")]
